@@ -1,0 +1,73 @@
+{% extends "exclude-navbar-base.html" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="logo text-center">
+				<h1>1000x Security</h1>
+			</div>
+			<div style="width: 80%;margin: 0 auto;margin-top: 50px;">
+				<h2>Create your account</h2>
+				<h5>Already have an account? <a href="{{ url_for('auth.login') }}">Sign In</a></h5>
+
+				<div style="margin-top: 50px;">
+					{% include "components/errors.html" %}
+					{% with form = Forms.auth.RegistrationForm() %}
+	
+					{% from "macros/forms.html" import render_extra_fields %}
+					<form method="post" accept-charset="utf-8" autocomplete="off" role="form">
+	
+						<div class="mb-3">
+							<label for="username" class="form-label">Username</label>
+							{{ form.name(class="form-control", value=name, id="username", placeholder="jinyang") }}
+						</div>
+	
+						<div class="mb-3">
+							<label for="email" class="form-label">Email</label>
+							{{ form.email(class="form-control", value=name, id="email", placeholder="jinyang@example.com") }}
+						</div>
+	
+						<div class="mb-3">
+							<label for="password" class="form-label">Password</label>
+							{{ form.password(class="form-control", value=password, id="password", placeholder="password") }}
+						</div>
+	
+						{{ form.nonce() }}
+	
+						{{ render_extra_fields(form.extra) }}
+	
+						{% if Configs.tos_or_privacy %}
+						<div class="form-check">
+								<small class="text-muted text-center">
+									By registering, you agree to the
+									<a href="{{ Configs.privacy_link }}" rel="noopener" target="_blank">privacy policy</a>
+									and <a href="{{ Configs.tos_link }}" rel="noopener" target="_blank">terms of service</a>
+								</small>
+						</div>
+						{% endif %}
+	
+						<div>
+							{{ form.submit(class="btn btn-primary", value="Register for free", style="width: 100%;") }}
+						</div>
+					</form>
+					{% endwith %}
+				</div>
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			<img src="../../../themes/core/static/img/register.png" class="register-image" />
+		</div>
+	</div>
+</div>
+<section class="registration-footer" style="position: absolute;bottom: 0;text-align: center;width: 100%;margin: 10px 0;">
+	© 2023 1000x Security. All rights reserved. Made with <span class="red" style="color: red;">❤</span> in Hyderabad
+</section>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
