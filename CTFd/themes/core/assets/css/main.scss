@@ -6,13 +6,14 @@
 @import "includes/flag-icons.scss";
 @import "includes/utils/opacity.scss";
 @import "includes/utils/min-height.scss";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 html,
 body,
 .container {
   // font-family: "Lato", "LatoOffline", sans-serif;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 h1,

@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
-    "canvas-confetti": "^1.6.0"
+    "canvas-confetti": "^1.6.0",
+    "yarn": "^1.22.19"
   }
 }
