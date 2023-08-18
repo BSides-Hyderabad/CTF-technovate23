@@ -12,34 +12,36 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="base-navbars">
-            <ul class="navbar-nav mr-auto">
-                {% for page in Plugins.user_menu_pages %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ page.route }}">{{ page.title }}</a>
-                    </li>
-                {% endfor %}
+            {% if authed() %}
+                <ul class="navbar-nav mr-auto">
+                    {% for page in Plugins.user_menu_pages %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ page.route }}">{{ page.title }}</a>
+                        </li>
+                    {% endfor %}
 
-                {% if Configs.account_visibility != 'admins' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('users.listing') }}"><i class="fa-solid fa-user"></i> Users</a>
-                    </li>
-                    {% if Configs.user_mode == 'teams' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('teams.listing') }}"><i class="fa-solid fa-people-group"></i> Teams</a>
-                    </li>
+                    {% if Configs.account_visibility != 'admins' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('users.listing') }}"><i class="fa-solid fa-user"></i> Users</a>
+                        </li>
+                        {% if Configs.user_mode == 'teams' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('teams.listing') }}"><i class="fa-solid fa-people-group"></i> Teams</a>
+                        </li>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
 
-                {% if Configs.account_visibility != 'admins' and Configs.score_visibility != 'admins' %}
+                    {% if Configs.account_visibility != 'admins' and Configs.score_visibility != 'admins' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('scoreboard.listing') }}"><i class="fa-solid fa-square-poll-vertical"></i> Scoreboard</a>
+                        </li>
+                    {% endif %}
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('scoreboard.listing') }}"><i class="fa-solid fa-square-poll-vertical"></i> Scoreboard</a>
+                        <a class="nav-link" href="{{ url_for('challenges.listing') }}"><i class="fa-solid fa-bullseye"></i> Challenges</a>
                     </li>
-                {% endif %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('challenges.listing') }}"><i class="fa-solid fa-bullseye"></i> Challenges</a>
-                </li>
-            </ul>
+                </ul>
+            {% endif %}
 
             <hr class="d-sm-flex d-md-flex d-lg-none">
 
